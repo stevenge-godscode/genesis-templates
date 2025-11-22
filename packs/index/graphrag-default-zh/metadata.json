@@ -1,0 +1,48 @@
+{
+  "id": "graphrag-index-default-zh-v1",
+  "name": "GraphRAG 默认索引提示词（中文）",
+  "channel": "index",
+  "locale": "zh-CN",
+  "scenario": "indexing",
+  "version": "2025.11",
+  "description": "GraphRAG 2.7 官方索引提示词的中文翻译版本，涵盖实体抽取、社区报告与节点摘要。",
+  "tags": {
+    "source": "graphrag",
+    "release": "2.7.0",
+    "language": "zh",
+    "modules": [
+      "extract_graph",
+      "community_reports",
+      "summarize_descriptions"
+    ]
+  },
+  "modules": [
+    {
+      "key": "extract_graph",
+      "label": "实体抽取提示词（中文）",
+      "description": "从文档中识别实体与关系，并使用统一格式输出。",
+      "language": "zh",
+      "audience": "index_worker",
+      "style": "instructional",
+      "file": "extract_graph.prompt"
+    },
+    {
+      "key": "community_reports",
+      "label": "社区报告提示词（中文）",
+      "description": "基于图谱生成结构化社区报告，附带评级与结论。",
+      "language": "zh",
+      "audience": "analyst",
+      "style": "report",
+      "file": "community_reports.prompt"
+    },
+    {
+      "key": "summarize_descriptions",
+      "label": "节点摘要提示词（中文）",
+      "description": "为每个实体生成 2-3 句摘要与关键词，引用证据。",
+      "language": "zh",
+      "audience": "index_worker",
+      "style": "summary",
+      "file": "summarize_descriptions.prompt"
+    }
+  ]
+}

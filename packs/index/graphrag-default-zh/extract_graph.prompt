@@ -1,0 +1,120 @@
+-目标-
+给定一段可能与本任务相关的文本，以及一组需要识别的实体类型，请从文本中找出这些类型的所有实体，并枚举它们之间的所有关系。
+ 
+-步骤-
+1. 识别所有实体。对每个实体，提取以下信息：
+- entity_name：实体名称，使用全大写
+- entity_type：以下类型之一：[{entity_types}]
+- entity_description：对实体属性与活动的全面描述
+将每个实体按以下格式输出：("entity"{tuple_delimiter}<entity_name>{tuple_delimiter}<entity_type>{tuple_delimiter}<entity_description>)
+ 
+2. 在第 1 步得到的实体中，找出所有“明确相关”的 (source_entity, target_entity) 对。
+对每个关系，提取以下信息：
+- source_entity：关系的源实体名称
+- target_entity：关系的目标实体名称
+- relationship_description：说明你为何认为二者存在该关系
+- relationship_strength：0-10 之间的数值，表示关系强度
+将每个关系按以下格式输出：("relationship"{tuple_delimiter}<source_entity>{tuple_delimiter}<target_entity>{tuple_delimiter}<relationship_description>{tuple_delimiter}<relationship_strength>)
+ 
+3. 使用中文输出第 1、2 步找到的所有实体与关系，并以 **{record_delimiter}** 作为列表分隔符。
+ 
+4. 完成后输出 {completion_delimiter}
+ 
+######################
+-示例-
+######################
+示例 1：
+Entity_types: ORGANIZATION,PERSON
+Text:
+The Verdantis's Central Institution is scheduled to meet on Monday and Thursday, with the institution planning to release its latest policy decision on Thursday at 1:30 p.m. PDT, followed by a press conference where Central Institution Chair Martin Smith will take questions. Investors expect the Market Strategy Committee to hold its benchmark interest rate steady in a range of 3.5%-3.75%.
+######################
+Output:
+("entity"{tuple_delimiter}CENTRAL INSTITUTION{tuple_delimiter}ORGANIZATION{tuple_delimiter}中央机构是 Verdantis 的央行，将在周一和周四召开会议并公布利率决议)
+{record_delimiter}
+("entity"{tuple_delimiter}MARTIN SMITH{tuple_delimiter}PERSON{tuple_delimiter}Martin Smith 是中央机构主席，将在发布会回答问题)
+{record_delimiter}
+("entity"{tuple_delimiter}MARKET STRATEGY COMMITTEE{tuple_delimiter}ORGANIZATION{tuple_delimiter}市场策略委员会负责利率与货币供应决策)
+{record_delimiter}
+("relationship"{tuple_delimiter}MARTIN SMITH{tuple_delimiter}CENTRAL INSTITUTION{tuple_delimiter}Martin Smith 作为主席主持央行发布会并答疑{tuple_delimiter}9)
+{completion_delimiter}
+ 
+######################
+示例 2：
+Entity_types: ORGANIZATION
+Text:
+TechGlobal's (TG) stock skyrocketed in its opening day on the Global Exchange Thursday. But IPO experts warn that the semiconductor corporation's debut on the public markets isn't indicative of how other newly listed companies may perform.
+
+TechGlobal, a formerly public company, was taken private by Vision Holdings in 2014. The well-established chip designer says it powers 85% of premium smartphones.
+######################
+Output:
+("entity"{tuple_delimiter}TECHGLOBAL{tuple_delimiter}ORGANIZATION{tuple_delimiter}TechGlobal 是一家在全球交易所上市的芯片公司，号称为 85% 的高端手机提供算力)
+{record_delimiter}
+("entity"{tuple_delimiter}VISION HOLDINGS{tuple_delimiter}ORGANIZATION{tuple_delimiter}Vision Holdings 在 2014 年将 TechGlobal 私有化)
+{record_delimiter}
+("relationship"{tuple_delimiter}TECHGLOBAL{tuple_delimiter}VISION HOLDINGS{tuple_delimiter}Vision Holdings 曾在 2014-至今持有 TechGlobal{tuple_delimiter}5)
+{completion_delimiter}
+ 
+######################
+示例 3：
+Entity_types: ORGANIZATION,GEO,PERSON
+Text:
+Five Aurelians jailed for 8 years in Firuzabad and widely regarded as hostages are on their way home to Aurelia.
+
+The swap orchestrated by Quintara was finalized when $8bn of Firuzi funds were transferred to financial institutions in Krohaara, the capital of Quintara.
+
+The exchange initiated in Firuzabad's capital, Tiruzia, led to the four men and one woman, who are also Firuzi nationals, boarding a chartered flight to Krohaara.
+
+They were welcomed by senior Aurelian officials and are now on their way to Aurelia's capital, Cashion.
+
+The Aurelians include 39-year-old businessman Samuel Namara, who has been held in Tiruzia's Alhamia Prison, as well as journalist Durke Bataglani, 59, and environmentalist Meggie Tazbah, 53, who also holds Bratinas nationality.
+######################
+Output:
+("entity"{tuple_delimiter}FIRUZABAD{tuple_delimiter}GEO{tuple_delimiter}Firuzabad 关押了多名 Aurelian 人质)
+{record_delimiter}
+("entity"{tuple_delimiter}AURELIA{tuple_delimiter}GEO{tuple_delimiter}Aurelia 正努力营救被 Firuzabad 关押的公民)
+{record_delimiter}
+("entity"{tuple_delimiter}QUINTARA{tuple_delimiter}GEO{tuple_delimiter}Quintara 斡旋了 80 亿美元资金换人的交易)
+{record_delimiter}
+{record_delimiter}
+("entity"{tuple_delimiter}TIRUZIA{tuple_delimiter}GEO{tuple_delimiter}Tiruzia 是 Firuzabad 首都，也是囚禁地点)
+{record_delimiter}
+("entity"{tuple_delimiter}KROHAARA{tuple_delimiter}GEO{tuple_delimiter}Krohaara 是 Quintara 首都，完成资金划转)
+{record_delimiter}
+("entity"{tuple_delimiter}CASHION{tuple_delimiter}GEO{tuple_delimiter}Cashion 是 Aurelia 首都，人质正被送回)
+{record_delimiter}
+("entity"{tuple_delimiter}SAMUEL NAMARA{tuple_delimiter}PERSON{tuple_delimiter}Samuel Namara 是 39 岁商人，在 Alhamia 监狱羁押)
+{record_delimiter}
+("entity"{tuple_delimiter}ALHAMIA PRISON{tuple_delimiter}GEO{tuple_delimiter}Alhamia 监狱位于 Tiruzia)
+{record_delimiter}
+("entity"{tuple_delimiter}DURKE BATAGLANI{tuple_delimiter}PERSON{tuple_delimiter}Durke Bataglani 是 59 岁记者，同样被囚)
+{record_delimiter}
+("entity"{tuple_delimiter}MEGGIE TAZBAH{tuple_delimiter}PERSON{tuple_delimiter}Meggie Tazbah 是 53 岁环保人士，拥有 Bratinas 国籍)
+{record_delimiter}
+("relationship"{tuple_delimiter}FIRUZABAD{tuple_delimiter}AURELIA{tuple_delimiter}Firuzabad 与 Aurelia 正进行人质交换{tuple_delimiter}2)
+{record_delimiter}
+("relationship"{tuple_delimiter}QUINTARA{tuple_delimiter}AURELIA{tuple_delimiter}Quintara 代表 Firuzabad 与 Aurelia 促成交换{tuple_delimiter}2)
+{record_delimiter}
+("relationship"{tuple_delimiter}QUINTARA{tuple_delimiter}FIRUZABAD{tuple_delimiter}Quintara 作为调停方协调 Firuzabad 释放人质{tuple_delimiter}2)
+{record_delimiter}
+("relationship"{tuple_delimiter}SAMUEL NAMARA{tuple_delimiter}ALHAMIA PRISON{tuple_delimiter}Samuel Namara 被关押在 Alhamia 监狱{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}SAMUEL NAMARA{tuple_delimiter}MEGGIE TAZBAH{tuple_delimiter}两人同属此次交换人质名单{tuple_delimiter}2)
+{record_delimiter}
+("relationship"{tuple_delimiter}SAMUEL NAMARA{tuple_delimiter}DURKE BATAGLANI{tuple_delimiter}两人在同一批交换人质中{tuple_delimiter}2)
+{record_delimiter}
+("relationship"{tuple_delimiter}MEGGIE TAZBAH{tuple_delimiter}DURKE BATAGLANI{tuple_delimiter}两位人质互有关联并被一同释放{tuple_delimiter}2)
+{record_delimiter}
+("relationship"{tuple_delimiter}SAMUEL NAMARA{tuple_delimiter}FIRUZABAD{tuple_delimiter}Samuel Namara 被 Firuzabad 关押{tuple_delimiter}2)
+{record_delimiter}
+("relationship"{tuple_delimiter}MEGGIE TAZBAH{tuple_delimiter}FIRUZABAD{tuple_delimiter}Meggie Tazbah 被 Firuzabad 关押{tuple_delimiter}2)
+{record_delimiter}
+("relationship"{tuple_delimiter}DURKE BATAGLANI{tuple_delimiter}FIRUZABAD{tuple_delimiter}Durke Bataglani 被 Firuzabad 关押{tuple_delimiter}2)
+{completion_delimiter}
+ 
+######################
+-真实数据-
+######################
+Entity_types: {entity_types}
+Text: {input_text}
+######################
+Output:

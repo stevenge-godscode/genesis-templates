@@ -1,0 +1,69 @@
+{
+  "id": "graphrag-query-default-zh-v1",
+  "name": "GraphRAG 默认查询提示词（中文）",
+  "channel": "query",
+  "locale": "zh-CN",
+  "scenario": "query",
+  "version": "2025.11",
+  "description": "GraphRAG 2.7 官方查询提示词的中文翻译版，涵盖全局与局部 map-reduce 流程以及最终答复指引。",
+  "tags": {
+    "source": "graphrag",
+    "release": "2.7.0",
+    "industry": "general",
+    "language": "zh",
+    "modules": [
+      "global_map",
+      "global_reduce",
+      "answer",
+      "local_map",
+      "local_answer"
+    ]
+  },
+  "modules": [
+    {
+      "key": "global_map",
+      "label": "全局 Map 提示词",
+      "description": "将用户问题拆解为引用全局图谱的关键要点。",
+      "language": "zh",
+      "audience": "global_query",
+      "style": "structured_json",
+      "file": "global_map.prompt"
+    },
+    {
+      "key": "global_reduce",
+      "label": "全局 Reduce 提示词",
+      "description": "汇总多位分析师报告并保持引用。",
+      "language": "zh",
+      "audience": "global_query",
+      "style": "markdown",
+      "file": "global_reduce.prompt"
+    },
+    {
+      "key": "answer",
+      "label": "最终回答提示词",
+      "description": "指导最终回复并标注知识来源。",
+      "language": "zh",
+      "audience": "answer_stage",
+      "style": "hybrid",
+      "file": "answer.prompt"
+    },
+    {
+      "key": "local_map",
+      "label": "局部 Map 提示词",
+      "description": "为特定实体或子图生成摘要。",
+      "language": "zh",
+      "audience": "local_query",
+      "style": "markdown",
+      "file": "local_map.prompt"
+    },
+    {
+      "key": "local_answer",
+      "label": "局部回答提示词",
+      "description": "基于实体级数据表输出局部答案。",
+      "language": "zh",
+      "audience": "local_query",
+      "style": "markdown",
+      "file": "local_answer.prompt"
+    }
+  ]
+}

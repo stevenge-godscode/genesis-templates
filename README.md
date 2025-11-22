@@ -1,18 +1,59 @@
-# Prompt Marketplace Templates
+# Genesis Admin Prompt Templates
 
-该目录收录可直接托管到 GitHub（或任何静态文件服务器）供 Prompt Marketplace 拉取的模板文件。
+Templates for the Genesis Admin Prompt Marketplace live under the `packs/`
+directory. Each pack represents one publishable template (e.g., "GraphRAG
+Default Query Prompts") and contains:
 
-## 文件结构
+```
+<channel>/<slug>/
+├── metadata.json      # describes locale/tags/modules
+├── <module>.prompt    # raw prompt text per module
+└── ...
+```
 
-| 文件 | 说明 |
-| --- | --- |
-| `prompt-market-defaults.json` | GraphRAG 官方默认的索引 / 查询提示词模板，包含全量模块（索引：`extract_graph`、`community_reports`、`summarize_descriptions`；查询：`global_map`、`global_reduce`、`local_map`、`local_answer`、`answer`）。 |
+## Adding / Updating a Pack
 
-## 使用方式
+1. Create or edit `packs/<channel>/<slug>/metadata.json`.
+2. Update the referenced `.prompt` files with the latest content.
+3. Commit and push the changes to this repository.
+4. In Genesis Admin → 管理员 → 提示词模板 → 系统来源，添加 metadata 的 Raw URL
+   (例如 `https://raw.githubusercontent.com/<org>/<repo>/<branch>/packs/query/graphrag-default-en/metadata.json`).
+5. 点击“同步”即可让 Prompt Marketplace 自动拉取 metadata 和对应的 `.prompt` 文件。
 
-1. 将 `prompt-market-defaults.json` 提交到公开仓库（例如 `https://github.com/<org>/<repo>/templates/prompt-market-defaults.json`）。
-2. 记录该文件的 Raw URL（GitHub 可使用 `https://raw.githubusercontent.com/<org>/<repo>/<branch>/templates/prompt-market-defaults.json`）。
-3. 在管理员后台「提示词模板」页面添加新的系统来源，URL 填写上述 Raw 链接，保存后点击「同步」即可把该文件内的模板写入市场缓存。
-4. 项目成员即可在「提示词市场」中浏览并克隆这些模板。
+> 不再需要打包单独的 JSON；每个 metadata 直接对应一个模板记录。
 
-> 模板格式：顶层对象包含 `items` 数组，每个元素描述一个模板条目，可同时包含 `index_prompts` 与 `query_prompts` 字段（后端会按字段自动识别支持的频道）。
+## metadata.json Reference
+
+```json
+{
+  "id": "graphrag-index-default-v1",
+  "name": "GraphRAG Default Index Prompts",
+  "channel": "index",
+  "locale": "en-US",
+  "scenario": "indexing",
+  "version": "2025.11",
+  "description": "English defaults for GraphRAG 2.7 indexing flows.",
+  "tags": {
+    "source": "graphrag",
+    "release": "2.7.0",
+    "industry": "general",
+    "language": "en"
+  },
+  "modules": [
+    {
+      "key": "extract_graph",
+      "label": "Entity Extraction Prompt",
+      "description": "Detect entities and relationships.",
+      "language": "en",
+      "audience": "index_worker",
+      "style": "analytical",
+      "file": "extract_graph.prompt"
+    }
+  ]
+}
+```
+
+- `channel`: `index` 或 `query`。
+- `modules[*].file`: metadata 所在目录下的 prompt 文件路径。
+- 通过 `tags`、`modules[*].language/style/audience` 等字段标注用途，方便 UI
+  展示和筛选。
