@@ -1,0 +1,69 @@
+{
+  "id": "graphrag-query-default-v1",
+  "name": "GraphRAG Default Query Prompts",
+  "channel": "query",
+  "locale": "en-US",
+  "scenario": "query",
+  "version": "2025.11",
+  "description": "Official GraphRAG 2.7 query prompt pack with global/local map-reduce stages and final answering guidance.",
+  "tags": {
+    "source": "graphrag",
+    "release": "2.7.0",
+    "industry": "general",
+    "language": "en",
+    "modules": [
+      "global_map",
+      "global_reduce",
+      "answer",
+      "local_map",
+      "local_answer"
+    ]
+  },
+  "modules": [
+    {
+      "key": "global_map",
+      "label": "Global Map Prompt",
+      "description": "Break user questions into key points referencing the global graph.",
+      "language": "en",
+      "audience": "global_query",
+      "style": "structured_json",
+      "file": "global_map.prompt"
+    },
+    {
+      "key": "global_reduce",
+      "label": "Global Reduce Prompt",
+      "description": "Synthesize multiple analyst reports and maintain citations.",
+      "language": "en",
+      "audience": "global_query",
+      "style": "markdown",
+      "file": "global_reduce.prompt"
+    },
+    {
+      "key": "answer",
+      "label": "Answer Prompt",
+      "description": "Guide final responses and annotate knowledge provenance.",
+      "language": "en",
+      "audience": "answer_stage",
+      "style": "hybrid",
+      "file": "answer.prompt"
+    },
+    {
+      "key": "local_map",
+      "label": "Local Map Prompt",
+      "description": "Summarize information for a specific entity or subgraph.",
+      "language": "en",
+      "audience": "local_query",
+      "style": "markdown",
+      "file": "local_map.prompt"
+    },
+    {
+      "key": "local_answer",
+      "label": "Local Answer Prompt",
+      "description": "Compose localized answers grounded in entity-specific tables.",
+      "language": "en",
+      "audience": "local_query",
+      "style": "markdown",
+      "file": "local_answer.prompt"
+    }
+  ]
+}

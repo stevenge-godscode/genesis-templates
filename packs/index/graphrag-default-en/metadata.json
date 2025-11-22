@@ -1,0 +1,49 @@
+{
+  "id": "graphrag-index-default-v1",
+  "name": "GraphRAG Default Index Prompts",
+  "channel": "index",
+  "locale": "en-US",
+  "scenario": "indexing",
+  "version": "2025.11",
+  "description": "Official GraphRAG 2.7 indexing prompt pack covering entity extraction, community reporting, and node summarization.",
+  "tags": {
+    "source": "graphrag",
+    "release": "2.7.0",
+    "industry": "general",
+    "language": "en",
+    "modules": [
+      "extract_graph",
+      "community_reports",
+      "summarize_descriptions"
+    ]
+  },
+  "modules": [
+    {
+      "key": "extract_graph",
+      "label": "Entity Extraction Prompt",
+      "description": "Extract entities and relationships from indexed documents.",
+      "language": "en",
+      "audience": "index_worker",
+      "style": "analytical",
+      "file": "extract_graph.prompt"
+    },
+    {
+      "key": "community_reports",
+      "label": "Community Report Prompt",
+      "description": "Generate community-level summaries grounded in graph entities.",
+      "language": "en",
+      "audience": "analyst",
+      "style": "report",
+      "file": "community_reports.prompt"
+    },
+    {
+      "key": "summarize_descriptions",
+      "label": "Node Summary Prompt",
+      "description": "Produce 2-3 sentence descriptions for each entity with citations.",
+      "language": "en",
+      "audience": "index_worker",
+      "style": "concise",
+      "file": "summarize_descriptions.prompt"
+    }
+  ]
+}
