@@ -1,0 +1,13 @@
+{
+  "name": "DeepSeek-V3.1",
+  "config_type": "llm",
+  "provider": "deepseek",
+  "model": "deepseek-ai/DeepSeek-V3.1",
+  "base_url": "https://api.modelverse.cn/v1",
+  "parameters": {
+    "temperature": 0.0,
+    "top_p": 1.0
+  },
+  "description": "DeepSeek V3.1 默认配置",
+  "tags": ["deepseek"]
+}

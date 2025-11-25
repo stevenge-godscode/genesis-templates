@@ -1,0 +1,13 @@
+{
+  "name": "OpenAI GPT-4o-mini",
+  "config_type": "llm",
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "base_url": "https://api.openai.com/v1",
+  "parameters": {
+    "temperature": 0.0,
+    "top_p": 1.0
+  },
+  "description": "OpenAI GPT-4o-mini 默认配置",
+  "tags": ["openai", "gpt4o"]
+}

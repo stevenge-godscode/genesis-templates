@@ -1,0 +1,25 @@
+{
+  "id": "model-config-graphrag-default-v1",
+  "name": "GraphRAG 默认模型配置",
+  "type": "model_config_template",
+  "version": "2025.11",
+  "description": "官方推荐的 LLM / Embedding 运行配置，可直接导入 Genesis Admin。",
+  "tags": {
+    "source": "graphrag",
+    "release": "2.7.0"
+  },
+  "templates": [
+    {
+      "file": "openai-gpt4o-mini.json"
+    },
+    {
+      "file": "deepseek-v31.json"
+    },
+    {
+      "file": "openai-text-embedding-3-small.json"
+    },
+    {
+      "file": "baai-bge-m3-frpc.json"
+    }
+  ]
+}
