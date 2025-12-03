@@ -1,0 +1,19 @@
+{
+  "id": "model-config-siliconflow-v1",
+  "name": "SiliconFlow 模型套装",
+  "type": "model_config_template",
+  "version": "2025.11",
+  "description": "SiliconFlow 托管的 DeepSeek-V3 与 BAAI/bge-m3 默认配置。",
+  "tags": {
+    "source": "siliconflow",
+    "release": "latest"
+  },
+  "templates": [
+    {
+      "file": "siliconflow-deepseek-v3.json"
+    },
+    {
+      "file": "siliconflow-bge-m3.json"
+    }
+  ]
+}

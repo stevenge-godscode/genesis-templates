@@ -1,0 +1,13 @@
+{
+  "name": "SiliconFlow BAAI bge-m3",
+  "config_type": "embedding",
+  "provider": "siliconflow",
+  "model": "BAAI/bge-m3",
+  "base_url": "https://api.siliconflow.cn/v1",
+  "parameters": {
+    "batch_size": 16,
+    "async_mode": "asyncio"
+  },
+  "description": "BAAI bge-m3 向量嵌入（SiliconFlow）",
+  "tags": ["siliconflow", "embedding", "baai"]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "SiliconFlow DeepSeek-V3",
+  "config_type": "llm",
+  "provider": "siliconflow",
+  "model": "deepseek-ai/DeepSeek-V3",
+  "base_url": "https://api.siliconflow.cn/v1",
+  "parameters": {
+    "temperature": 0.0,
+    "top_p": 1.0
+  },
+  "description": "DeepSeek-V3 on SiliconFlow 默认配置",
+  "tags": ["siliconflow", "deepseek", "llm"]
+}
