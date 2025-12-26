@@ -74,3 +74,8 @@
         {{"description": "要点 2 的描述 [Data: Reports (report ids)]", "score": score_value}}
     ]
 }}
+
+---输出要求---
+
+只返回纯 JSON 文本，不能包含 Markdown 代码块（例如 ```json）、不能包含额外解释文字。
+必须输出合法 JSON，只返回一个顶层对象，不允许在对象前后添加任何其他字符（如说明文字、空行、额外括号等）。
