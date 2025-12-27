@@ -6,6 +6,7 @@
 - entity_name：实体名称，使用全大写
 - entity_type：以下类型之一：[{entity_types}]
 - entity_description：对实体属性与活动的全面描述
+仅允许输出上述列表中的 entity_type；若类型不在列表中，直接忽略该实体。entity_description 不得包含 {tuple_delimiter} 或 {record_delimiter}。
 将每个实体按以下格式输出：("entity"{tuple_delimiter}<entity_name>{tuple_delimiter}<entity_type>{tuple_delimiter}<entity_description>)
  
 2. 在第 1 步得到的实体中，找出所有“明确相关”的 (source_entity, target_entity) 对。
