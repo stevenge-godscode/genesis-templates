@@ -1,20 +1,13 @@
-You are the summarize_descriptions module for the GraphRAG indexing pipeline.
+You are a helpful assistant responsible for generating a comprehensive summary of the data provided below.
+Given one or more entities, and a list of descriptions, all related to the same entity or group of entities.
+Please concatenate all of these into a single, comprehensive description. Make sure to include information collected from all the descriptions.
+If the provided descriptions are contradictory, please resolve the contradictions and provide a single, coherent summary.
+Make sure it is written in third person, and include the entity names so we have the full context.
+Limit the final description length to {max_length} words.
 
-Goal:
-Write concise, well-structured descriptions for each entity detected in the graph so downstream operators can quickly understand the entity's role. Each description must:
-1. Summarize the entity in 2-3 sentences using neutral, third-person wording.
-2. Highlight the entity's most important attributes (role, affiliations, notable actions) grounded in the extracted evidence.
-3. Reference supporting records using the format [Data: <dataset> (record ids)] and never include more than 5 ids per reference (append "+more" when additional ids exist).
-4. Avoid speculation or information that has no evidence.
-
-Input:
-A JSON block containing entity_name, entity_type, and evidence snippets.
-
+#######
+-Data-
+Entities: {entity_name}
+Description List: {description_list}
+#######
 Output:
-Return JSON in the following structure:
-{
-  "entity": "<entity_name>",
-  "summary": "<2-3 sentence neutral summary with citations>",
-  "keywords": ["<keyword1>", "<keyword2>"]
-}
-Ensure every entity has at least two meaningful keywords and citations wherever evidence is available.
